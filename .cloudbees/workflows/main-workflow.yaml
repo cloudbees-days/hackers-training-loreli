@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - "**"
+  workflow_dispatch:
 permissions:
   scm-token-own: read
   scm-token-org: read
@@ -13,7 +14,6 @@ jobs:
   test:
     steps:
       - name: Run Jenkins Job
-      # Running Jenkins Job from Thunder Demo Controller
         kind: test
         uses: cloudbees-io/jenkins-run-job@v2
         continue-on-error: true
@@ -23,7 +23,6 @@ jobs:
           token: ${{ secrets.WES_JENKINS_TOKEN }}
           job-name: WesTestJob
       - name: Run GHA Workflow
-      # Running GHA Workflow from hackers-source repo
         kind: test
         uses: cloudbees-io/ghactions-run-workflow@v2
         continue-on-error: true
